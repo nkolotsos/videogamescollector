@@ -3,15 +3,13 @@
 
 <h1>Video Games List</h1>
 
-{% for game in games %}
+{% for videogame in videogames %}
 <div class="card">
     <a href="{% url 'videogames_detail' videogame.id %}">
         <div class="card-content">
-            <img src="" alt="">
             <span class="card-title">{{ videogame.title }}</span>
             <p>Genres: {{ videogame.genres }}</p>
             <p>Platforms: {{ videogame.platforms }}</p>
-            <p>User Rating: {{ videogame.rating }}</p>
         </div>
     </a>
 </div>

@@ -11,9 +11,13 @@
             <p>Description: {{ videogame.description|linebreaks }}</p>
             <p>Developer: {{ videogame.developer }}</p>
             <p>Publisher: {{ videogame.publisher }}</p>
-            <p>Release Date: {{ videogame.date }}</p>
+            <p>Release Date: {{ videogame.release_date }}</p>
             <p>Platforms: {{ videogame.platforms }}</p>
-            <p>User Rating: {{ videogame.rating }}</p>
+            <p>Date Played: {{ videogame.date }}</p>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'videogames_update' videogame.id %}">Edit</a>
+            <a href="{% url 'videogames_delete' videogame.id %}">Delete</a>
         </div>
     </a>
 </div>
