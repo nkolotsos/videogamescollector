@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Video Game Details</h1>
+
+<div class="card">
+        <div class="card-content">
+            <img src="" alt="">
+            <span class="card-title">{{ videogame.title }}</span>
+            <p>Genres: {{ videogame.genres }}</p>
+            <p>Description: {{ videogame.description|linebreaks }}</p>
+            <p>Developer: {{ videogame.developer }}</p>
+            <p>Publisher: {{ videogame.publisher }}</p>
+            <p>Release Date: {{ videogame.date }}</p>
+            <p>Platforms: {{ videogame.platforms }}</p>
+            <p>User Rating: {{ videogame.rating }}</p>
+        </div>
+    </a>
+</div>
+
+{% endblock %}
