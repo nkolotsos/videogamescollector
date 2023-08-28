@@ -47,3 +47,13 @@ class Review(models.Model):
     
     class Meta:
         ordering = ['-date']
+
+class Collection(models.Model):
+    name = models.CharField(max_length=100)
+    games = models.ManyToManyField(Videogame)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('collection_detail', kwargs={'pk': self.id})

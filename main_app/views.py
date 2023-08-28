@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Videogame, Review
+from .models import Videogame, Review, Collection
 from .forms import ReviewForm
 
 # Create your views here.
@@ -17,16 +17,18 @@ def videogames_index(request):
 
 def videogames_detail(request, videogames_id):
     videogame = Videogame.objects.get(id=videogames_id)
+    id_list = Collection.games.all().values_list('id')
+    not_included = Videogame.objects.exclude(id__in=id_list)
     review_form = ReviewForm()
-    return render(request, 'videogames/detail.html', { 'videogame': videogame, 'reivew_form': review_form})
+    return render(request, 'videogames/detail.html', { 'videogame': videogame, 'review_form': review_form, 'collection': not_included })
 
-def add_review(request, videogames_id):
+def add_review(request, videogame_id):
     form = ReviewForm(request.POST)
     if form.is_valid():
         review = form.save(commit=False)
-        review.videogames_id = videogames_id
+        review.videogame_id = videogame_id
         review.save()
-    return redirect('videogames_detail', videogames_id=videogames_id)
+    return redirect('videogames_detail', videogames_id=videogame_id)
 
 class VideogameCreate(CreateView):
     model = Videogame
@@ -43,3 +45,18 @@ class VideogameDelete(DeleteView):
     success_url = '/videogames'
     template_name = 'main_app/videogame_confirm_delete.html'
 
+class CollectionList(ListView):
+    model = Collection
+
+class CollectionDetail(DetailView):
+    model = Collection
+
+class CollectionCreate(CreateView):
+    model = Collection
+
+class CollectionUpdate(UpdateView):
+    model = Collection
+
+class CollectionDelete(DeleteView):
+    model = Collection
+    success_url = '/collections'

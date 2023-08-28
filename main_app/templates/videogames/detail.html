@@ -32,18 +32,40 @@
     {% if not videogame.reviews.all %}
         <p>No Reviews Yet</p>
     {% else %}
-        {% for comment in videogame.reviews.all %}
+        {% for review in videogame.reviews.all %}
             <div class="card">
                 <div class="card-content">    
                     <span class="card-title">{{ review.name }}</span>
                     {{ review.rating }} @ {{ review.date }}
                     <hr>
-                    {{ reviews.comment }}
+                    {{ review.comment }}
                 </div>
             </div>
         {% endfor %}
     {% endif %}
 </section>
 
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>Collections</h3>
+    {% if collection.games.count %}
+      {% for collection in collection.games.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              {{ videogame.title }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{ videogame.title }} has not been added to any collections yet.</h5>
+    {% endif %}
+  </div>
 
+<script>  
+    const selectEl = document.getElementById('id_rating');
+    M.FormSelect.init(selectEl);
+</script>
 {% endblock %}
