@@ -12,18 +12,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
-  <header class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
+  <header class="navbar-extended">
+    <nav class="navbar-extended">
+      <div class="nav-wrapper nav-extended deep-purple lighten-2">
         <ul>
-          <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Video Games Collector</a></li>
+          <li><a href="{% url 'home' %}" class="brand-logo">Video Games Collector</a></li>
         </ul>
-        <ul class="right">
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'videogames_create' %}">Add a Video Game</a></li>
-          <li><a href="{% url 'videogames_index' %}">View All Video Games</a></li>
-          <li><a href=""></a></li>
-        </ul>
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a href="{% url 'about' %}">About</a></li>
+            <li class="tab"><a href="{% url 'collections_create' %}">Create a Collection</a></li>
+            <li class="tab"><a href="{% url 'collections_index' %}">View All Collections</a></li>
+            <li class="tab"><a href="{% url 'videogames_create' %}">Add a Video Game</a></li>
+            <li class="tab"><a href="{% url 'videogames_index' %}">View All Video Games</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   </header>
@@ -31,8 +34,9 @@
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="page-footer">
+  <footer class="page-footer deep-purple lighten-2">
     <div class="right">All Rights Reserved, &copy; 2023 Video Games Collector &nbsp;</div>
   </footer>
+
 </body>
 </html>
