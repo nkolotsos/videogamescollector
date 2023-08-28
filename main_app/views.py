@@ -37,7 +37,7 @@ def add_review(request, videogame_id):
 class VideogameCreate(CreateView):
     model = Videogame
     fields = ['title', 'genres']
-    success_url = 'collections/'
+    success_url = '/videogames'
 
 class VideogameUpdate(UpdateView):
     model = Videogame
@@ -59,6 +59,7 @@ class CollectionDetail(DetailView):
 class CollectionCreate(CreateView):
     model = Collection
     fields = ['name']
+    success_url = 'collections/'
 
 class CollectionUpdate(UpdateView):
     model = Collection
